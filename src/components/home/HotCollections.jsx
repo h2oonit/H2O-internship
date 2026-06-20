@@ -53,7 +53,7 @@ const HotCollections = () => {
 			);
 			setUserData(response.data);
 			console.log(userData);
-			// setLoading(false);
+			setLoading(false);
 		} catch (error) {
 			console.log(error);
 		}
