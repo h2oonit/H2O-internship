@@ -1,10 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
+import axios from "axios";
 
 const Author = () => {
+  const { authorId } = useParams();
+  const [userData, setUserData] = useState([]);
+	const [loading, setLoading] = useState(true);
+
+  async function fetchData() {
+		try {
+			const response = await axios.get(
+				` https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${authorId}`,
+			);
+			setUserData(response.data);
+			console.log(response.data);
+			setLoading(false);
+		} catch (error) {
+			console.error("Error fetching data:", error);
+			setLoading(false);
+		}
+	}
+
+  useEffect(() => {
+    fetchData();
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "instant"
+    })
+  }, []);
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
