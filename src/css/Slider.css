@@ -71,6 +71,7 @@
   transform: translateX(-4px);
 }
 
+
 /* ===== Skeleton loading state ===== */
 
 .skeleton_container {
@@ -136,6 +137,12 @@
     background-position: 0% 50%;
   }
 }
+
+
+
+
+
+
 
 /* ===== Responsive ===== */
 
