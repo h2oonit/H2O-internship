@@ -8,14 +8,14 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../css/Slider.css";
+import { Countdown } from "../UI/Countdown";
 
 const NewItems = () => {
 	const [userData, setUserData] = useState([]);
 	const [loading, setLoading] = useState(true);
-	const [timeLeft, setTimeLeft] = useState(item.expiryDate - Date.now());
-	let cancelId;
-	let startTime;
-	let countdown = 0;
+	const [isTablet, setIsTablet] = useState(window.innerWidth <= 768);
+	const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
+	const variableValue = isMobile ? 1 : isTablet ? 2 : 4;
 	var settings = {
 		dots: false,
 		infinite: true,
@@ -52,72 +52,26 @@ const NewItems = () => {
 				"https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems",
 			);
 			setUserData(response.data);
-			console.log(response.data);
 			setLoading(false);
-			startCountdown();
 		} catch (error) {
 			console.error("Error fetching data:", error);
 			setLoading(false);
 		}
 	}
 
-	function startCountdown() {
-		startTime = Date.now();
-		cancelId = requestAnimationFrame(updateTimer);
-		let expiryTime = userData.expiryDate
-			? new Date(userData.expiryDate).getTime() - startTime
-			: 0;
-		console.log("started countdown");
-	}
-
-	function updateTimer(countdownStart) {
-		const maxTime = countdownStart || 0;
-		let maxTimeInMs = maxTime;
-		let ms = Date.now() - startTime;
-		let timeLeftInMs = countdownStart - ms;
-
-		// if (timeLeftInMs <= 0) {
-		// 	timeLeftInMs = 0;
-		// 	cancelAnimationFrame(cancelId);
-		// 	cancelId = null;
-		// }
-		let secsLeft = Math.floor(timeLeftInMs / 1000);
-		let minsLeft = Math.floor(secsLeft / 60);
-
-		let msText = timeLeftInMs % 1000;
-		let secsText = secsLeft % 60;
-		let minsText = minsLeft;
-		// console.log(maxTime);
-
-		if (msText.toString().length < 3) {
-			msText = msText.toString().padStart(3, "0");
-		}
-		if (secsText.toString().length < 2) {
-			secsText = secsText.toString().padStart(2, "0");
-		}
-		if (minsText.toString().length < 2) {
-			minsText = minsText.toString().padStart(2, "0");
-		}
-
-		cancelId = requestAnimationFrame(updateTimer);
-		return (
-			<div className="de_countdown">
-				{minsText}:{secsText}:{msText}
-			</div>
-		);
-	}
-
 	useEffect(() => {
 		fetchData();
+		const handleResize = () => {
+			setIsMobile(window.innerWidth <= 480);
+			setIsTablet(window.innerWidth <= 768);
+		};
+
+		window.addEventListener("resize", handleResize);
+
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
 	}, []);
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setTimeLeft(item.expiryDate - Date.now());
-		}, 1000);
-
-		return () => clearInterval(interval);
-	}, [item.expiryDate]);
 
 	return (
 		<section id="section-items" className="no-bottom">
@@ -145,10 +99,8 @@ const NewItems = () => {
 												<i className="fa fa-check"></i>
 											</Link>
 										</div>
-										{!loading && item.countdown ? (
-											<div className="de_countdown">
-												0
-											</div>
+										{!loading && item.expiryDate ? (
+											<Countdown expiryTime={item.expiryDate} />
 										) : (
 											<div className="de_countdown-empty"></div>
 										)}
@@ -194,7 +146,25 @@ const NewItems = () => {
 								</div>
 							))}
 						</Slider>
-					) : null}
+					) : (
+						new Array(variableValue).fill(0).map((_, index) => (
+							<div className="nft skeleton_nft" key={index}>
+								<div className="nft_coll skeleton-card">
+									<div className="nft_wrap">
+										<div className="skeleton skeleton-img"></div>
+									</div>
+									<div className="nft_coll_pp">
+										<div className="skeleton skeleton-avatar"></div>
+									</div>
+									<div className="nft_coll_info">
+										<div className="skeleton skeleton-title"></div>
+										<div className="skeleton skeleton-subtitle"></div>
+									</div>
+								</div>
+							</div>
+						))
+					)}
+					;
 				</div>
 			</div>
 		</section>
