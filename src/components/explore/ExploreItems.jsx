@@ -18,7 +18,6 @@ const ExploreItems = () => {
 			const response = await axios.get(
 				"https://us-central1-nft-cloud-functions.cloudfunctions.net/explore",
 			);
-			console.log(response.data);
 			setUserData(response.data);
 		} catch (error) {
 			console.error("Error fetching explore data:", error);
@@ -32,7 +31,6 @@ const ExploreItems = () => {
 			const response = await axios.get(
 				`https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${selectedFilter}`,
 			);
-			console.log("new data");
 			setUserData(response.data);
 		} catch (error) {
 			console.error("Error fetching explore data:", error);
@@ -45,7 +43,6 @@ const ExploreItems = () => {
 		setLoading(true);
 		const selectedFilter = event.target.value;
 
-		console.log(selectedFilter);
 		fetchFilteredData(selectedFilter);
 	}
 
