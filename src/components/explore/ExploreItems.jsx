@@ -10,8 +10,6 @@ const ExploreItems = () => {
 	const [userData, setUserData] = useState([]);
 	const [loadMore, setLoadMore] = useState(8);
 	const [loading, setLoading] = useState(true);
-	const selectElement = document.getElementById("filter-items");
-	const selectValue = selectElement ? selectElement.value : "";
 
 	async function fetchData() {
 		try {
