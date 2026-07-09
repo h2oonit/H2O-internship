@@ -10,6 +10,8 @@ const ExploreItems = () => {
 	const [userData, setUserData] = useState([]);
 	const [loadMore, setLoadMore] = useState(8);
 	const [loading, setLoading] = useState(true);
+	const selectElement = document.getElementById("filter-items");
+	const selectValue = selectElement ? selectElement.value : "";
 
 	async function fetchData() {
 		try {
@@ -25,11 +27,12 @@ const ExploreItems = () => {
 		}
 	}
 
-	async function fetchFilteredData() {
+	async function fetchFilteredData(selectedFilter) {
 		try {
 			const response = await axios.get(
-				"https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=likes_high_to_low",
+				`https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${selectedFilter}`,
 			);
+			console.log("new data");
 			setUserData(response.data);
 		} catch (error) {
 			console.error("Error fetching explore data:", error);
@@ -38,15 +41,22 @@ const ExploreItems = () => {
 		}
 	}
 
+	function handleFilterChange(event) {
+		setLoading(true);
+		const selectedFilter = event.target.value;
+
+		console.log(selectedFilter);
+		fetchFilteredData(selectedFilter);
+	}
+
 	useEffect(() => {
 		fetchData();
-		fetchFilteredData();
 	}, []);
 
 	return (
 		<>
 			<div>
-				<select id="filter-items" defaultValue="">
+				<select id="filter-items" onChange={handleFilterChange} defaultValue="">
 					<option value="">Default</option>
 					<option value="price_low_to_high">Price, Low to High</option>
 					<option value="price_high_to_low">Price, High to Low</option>
@@ -138,17 +148,17 @@ const ExploreItems = () => {
 					<Link
 						to=""
 						id="loadmore"
-						onClick={() => setLoadMore(loadMore + 8)}
+						onClick={() => setLoadMore(loadMore + 4)}
 						className="btn-main lead"
 					>
 						Load more
 					</Link>
 				</div>
-			) :
-        <div className="col-md-12 text-center">
-          <div className="skeleton-box load-more-btn"></div>
-        </div>
-      }
+			) : (
+				<div className="col-md-12 text-center">
+					<div className="skeleton-box load-more-btn"></div>
+				</div>
+			)}
 		</>
 	);
 };

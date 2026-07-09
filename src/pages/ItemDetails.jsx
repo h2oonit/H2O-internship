@@ -20,7 +20,7 @@ const ItemDetails = ({ nft }) => {
 		} catch (error) {
 			console.error("Error fetching data:", error);
 		} finally {
-			// setLoading(false);
+			setLoading(false);
 		}
 	}
 
@@ -62,7 +62,7 @@ const ItemDetails = ({ nft }) => {
 												{userData?.views}
 											</div>
 										) : (
-											<div className="skeleton-likes"></div>
+											<div className="skeleton-like"></div>
 										)}
 										{!loading ? (
 											<div className="item_info_like">
@@ -70,7 +70,7 @@ const ItemDetails = ({ nft }) => {
 												{userData?.likes}
 											</div>
 										) : (
-											<div className="skeleton-likes"></div>
+											<div className="skeleton-like"></div>
 										)}
 									</div>
 									{!loading && userData?.description ? (
