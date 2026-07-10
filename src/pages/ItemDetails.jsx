@@ -16,7 +16,6 @@ const ItemDetails = ({ nft }) => {
 				` https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`,
 			);
 			setUserData(response.data);
-			console.log(response.data);
 		} catch (error) {
 			console.error("Error fetching data:", error);
 		} finally {

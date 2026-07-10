@@ -17,7 +17,6 @@ const Author = () => {
 				` https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`,
 			);
 			setUserData(response.data);
-      console.log(response.data);
 			setFollowers(response.data.followers);
 		} catch (error) {
 			console.error("Error fetching data:", error);

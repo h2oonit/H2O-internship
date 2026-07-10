@@ -41,7 +41,6 @@ const ExploreItems = () => {
 	function handleFilterChange(event) {
 		setLoading(true);
 		const selectedFilter = event.target.value;
-
 		fetchFilteredData(selectedFilter);
 	}
 
