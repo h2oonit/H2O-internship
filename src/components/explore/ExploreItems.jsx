@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import { Countdown } from "../UI/Countdown";
+import { Likes } from "../UI/Likes";
 
 const ExploreItems = () => {
 	const [userData, setUserData] = useState([]);
@@ -83,7 +84,7 @@ const ExploreItems = () => {
 								)}
 
 								<div className="nft__item_wrap">
-									<div className="nft__item_extra">
+									{/* <div className="nft__item_extra">
 										<div className="nft__item_buttons">
 											<button>Buy Now</button>
 											<div className="nft__item_share">
@@ -99,7 +100,7 @@ const ExploreItems = () => {
 												</a>
 											</div>
 										</div>
-									</div>
+									</div> */}
 									<Link to={`/item-details/${user.nftId}`}>
 										<img
 											src={user.nftImage}
@@ -113,10 +114,7 @@ const ExploreItems = () => {
 										<h4>{user.nftName}</h4>
 									</Link>
 									<div className="nft__item_price">{user.price} ETH</div>
-									<div className="nft__item_like">
-										<i className="fa fa-heart"></i>
-										<span>{user.likes}</span>
-									</div>
+									<Likes nftLikes={user.likes} index={index} />
 								</div>
 							</div>
 						</div>

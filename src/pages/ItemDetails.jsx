@@ -80,14 +80,14 @@ const ItemDetails = ({ nft }) => {
 									)}
 									<div className="d-flex flex-row">
 										<div className="mr40">
-											<h6>Creator</h6>
+											<h6>Owner</h6>
 											<div className="item_author">
 												<div className="author_list_pp">
 													{!loading ? (
-														<Link to="/author">
+														<Link to={`/author/${userData?.ownerId}`}>
 															<img
 																className="lazy"
-																src={userData?.creatorImage}
+																src={userData?.ownerImage}
 																alt=""
 															/>
 															<i className="fa fa-check"></i>
@@ -97,9 +97,9 @@ const ItemDetails = ({ nft }) => {
 													)}
 												</div>
 												<div className="author_list_info">
-													{!loading && userData?.creatorName ? (
-														<Link to={`/author/${userData?.creatorId}`}>
-															{userData?.creatorName}
+													{!loading && userData?.ownerName ? (
+														<Link to={`/author/${userData?.ownerId}`}>
+															{userData?.ownerName}
 														</Link>
 													) : (
 														<div className="skeleton-title"></div>
