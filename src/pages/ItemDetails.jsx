@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
+import { Likes } from "../components/UI/Likes";
 
 const ItemDetails = ({ nft }) => {
 	const { nftId } = useParams();
@@ -65,8 +66,7 @@ const ItemDetails = ({ nft }) => {
 										)}
 										{!loading ? (
 											<div className="item_info_like">
-												<i className="fa fa-heart"></i>
-												{userData?.likes}
+												<Likes className="item_details-likes" nftLikes={userData?.likes} />
 											</div>
 										) : (
 											<div className="skeleton-like"></div>
