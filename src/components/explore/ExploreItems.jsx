@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
 import { useState, useEffect } from "react";
-import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import { Countdown } from "../UI/Countdown";
 import { Likes } from "../UI/Likes";

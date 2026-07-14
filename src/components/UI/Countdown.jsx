@@ -25,7 +25,7 @@ export const Countdown = ({ expiryTime }) => {
 		return parts.join(" ");
 	};
     
-    const [countdown, setCountdown] = useState(getTimeLeft);
+    const [countdown, setCountdown] = useState(getTimeLeft());
 
 	useEffect(() => {
 		const interval = setInterval(() => {
