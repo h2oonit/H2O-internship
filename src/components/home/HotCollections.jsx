@@ -79,14 +79,43 @@ const HotCollections = () => {
 				<div className="row">
 					<div className="col-lg-12">
 						<div className="text-center">
-							<h2>Hot Collections</h2>
-							<div className="small-border bg-color-2"></div>
+							<h2
+								data-aos="fade-up"
+								data-aos-offset="100"
+								data-aos-delay="0"
+								data-aos-duration="1000"
+								data-aos-easing="ease-in-out"
+								data-aos-mirror="true"
+								data-aos-once="false"
+							>
+								Hot Collections
+							</h2>
+							<div
+								className="small-border bg-color-2"
+								data-aos="fade-up"
+								data-aos-offset="100"
+								data-aos-delay="100"
+								data-aos-duration="1000"
+								data-aos-easing="ease-in-out"
+								data-aos-mirror="true"
+								data-aos-once="false"
+							></div>
 						</div>
 					</div>
 					{!loading ? (
 						<Slider {...settings}>
-							{userData.map(item => (
-								<div className="nft" key={item.nftId}>
+							{userData.map((item) => (
+								<div
+									className="nft"
+									key={item.nftId}
+									data-aos="fade-up"
+									data-aos-offset="100"
+									data-aos-delay={userData.indexOf(item) * 100 + 200}
+									data-aos-duration="1000"
+									data-aos-easing="ease-in-out"
+									data-aos-mirror="true"
+									data-aos-once="false"
+								>
 									<div className="nft_coll">
 										<div className="nft_wrap">
 											<Link to={`/item-details/${item.nftId}`}>
@@ -118,10 +147,7 @@ const HotCollections = () => {
 							))}
 						</Slider>
 					) : (
-						<div
-							className="skeleton_container"
-							style={{ minHeight: "200px" }}
-						>
+						<div className="skeleton_container" style={{ minHeight: "200px" }}>
 							{new Array(variableValue).fill(0).map((_, index) => (
 								<div className="nft skeleton_nft" key={index}>
 									<div className="nft_coll skeleton-card">

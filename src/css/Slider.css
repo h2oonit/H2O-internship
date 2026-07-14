@@ -255,6 +255,22 @@ li {
 
 .nft__item_like {
   bottom: 0;
+  cursor: pointer;
+}
+
+
+/* AOS Animations */
+
+:root {
+  --aos-distance: 20px; /* default is usually larger, e.g. 100px depending on version */
+}
+
+[data-aos="fade-up"] {
+  transform: translate3d(0, 20px, 0); /* smaller = shorter travel, default is often 100px */
+}
+
+[data-aos="fade-up"].aos-animate {
+  transform: translate3d(0, 0, 0);
 }
 
 

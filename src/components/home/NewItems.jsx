@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../css/Slider.css";
 import { Countdown } from "../UI/Countdown";
+import {Likes} from "../UI/Likes";
 
 const NewItems = () => {
 	const [userData, setUserData] = useState([]);
@@ -79,14 +80,43 @@ const NewItems = () => {
 				<div className="row">
 					<div className="col-lg-12">
 						<div className="text-center">
-							<h2>New Items</h2>
-							<div className="small-border bg-color-2"></div>
+							<h2
+								data-aos="fade-up"
+								data-aos-offset="100"
+								data-aos-delay="0"
+								data-aos-duration="1000"
+								data-aos-easing="ease-in-out"
+								data-aos-mirror="true"
+								data-aos-once="false"
+							>
+								New Items
+							</h2>
+							<div
+								className="small-border bg-color-2"
+								data-aos="fade-up"
+								data-aos-offset="100"
+								data-aos-delay="100"
+								data-aos-duration="1000"
+								data-aos-easing="ease-in-out"
+								data-aos-mirror="true"
+								data-aos-once="false"
+							></div>
 						</div>
 					</div>
 					{!loading ? (
 						<Slider {...settings}>
 							{userData.map((item, index) => (
-								<div className="nft" key={item.nftId}>
+								<div
+									className="nft"
+									key={item.nftId}
+									data-aos="fade-up"
+									data-aos-offset="100"
+									data-aos-delay={userData.indexOf(item) * 100 + 200}
+									data-aos-duration="1000"
+									data-aos-easing="ease-in-out"
+									data-aos-mirror="true"
+									data-aos-once="false"
+								>
 									<div className="nft__item">
 										<div className="author_list_pp">
 											<Link
@@ -136,11 +166,11 @@ const NewItems = () => {
 											<Link to={`/item-details/${item.nftId}`}>
 												<h4>{item.nftName}</h4>
 											</Link>
-											<div className="nft__item_price">{item.price} ETH</div>
-											<div className="nft__item_like">
-												<i className="fa fa-heart"></i>
-												<span>{item.likes}</span>
+											<div className="nft__item_price">
+												{item.price} ETH
+												<Likes nftLikes={item.likes} index={index} />
 											</div>
+											
 										</div>
 									</div>
 								</div>

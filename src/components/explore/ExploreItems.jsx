@@ -112,8 +112,10 @@ const ExploreItems = () => {
 									<Link to={`/item-details/${user.nftId}`}>
 										<h4>{user.nftName}</h4>
 									</Link>
-									<div className="nft__item_price">{user.price} ETH</div>
-									<Likes nftLikes={user.likes} index={index} />
+									<div className="nft__item_price">
+										{user.price} ETH
+										<Likes nftLikes={user.likes} index={index} />
+									</div>
 								</div>
 							</div>
 						</div>
@@ -136,7 +138,9 @@ const ExploreItems = () => {
 					))}
 
 			{!loading ? (
-				<div className="col-md-12 text-center">
+				<div className="col-md-12 text-center"
+				
+				>
 					<Link
 						to=""
 						id="loadmore"

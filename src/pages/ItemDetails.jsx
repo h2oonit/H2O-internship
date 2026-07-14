@@ -50,12 +50,31 @@ const ItemDetails = ({ nft }) => {
 							<div className="col-md-6">
 								<div className="item_info">
 									{!loading && userData?.title ? (
-										<h2>{userData?.title}</h2>
+										<h2
+											data-aos="fade-up"
+											data-aos-offset="200"
+											data-aos-delay="0"
+											data-aos-duration="1000"
+											data-aos-easing="ease-in-out"
+											data-aos-mirror="true"
+											data-aos-once="false"
+										>
+											{userData?.title}
+										</h2>
 									) : (
 										<div className="skeleton-title"></div>
 									)}
 
-									<div className="item_info_counts">
+									<div
+										className="item_info_counts"
+										data-aos="fade-up"
+										data-aos-offset="100"
+										data-aos-delay="200"
+										data-aos-duration="1000"
+										data-aos-easing="ease-in-out"
+										data-aos-mirror="true"
+										data-aos-once="false"
+									>
 										{!loading ? (
 											<div className="item_info_views">
 												<i className="fa fa-eye"></i>
@@ -66,21 +85,53 @@ const ItemDetails = ({ nft }) => {
 										)}
 										{!loading ? (
 											<div className="item_info_like">
-												<Likes className="item_details-likes" nftLikes={userData?.likes} />
+												<Likes
+													className="item_details-likes"
+													nftLikes={userData?.likes}
+												/>
 											</div>
 										) : (
 											<div className="skeleton-like"></div>
 										)}
 									</div>
 									{!loading && userData?.description ? (
-										<p>{userData?.description}</p>
+										<p
+											data-aos="fade-up"
+											data-aos-offset="100"
+											data-aos-delay="400"
+											data-aos-duration="1000"
+											data-aos-easing="ease-in-out"
+											data-aos-mirror="true"
+											data-aos-once="false"
+										>
+											{userData?.description}
+										</p>
 									) : (
 										<div className="skeleton-box"></div>
 									)}
 									<div className="d-flex flex-row">
 										<div className="mr40">
-											<h6>Owner</h6>
-											<div className="item_author">
+											<h6
+												data-aos="fade-up"
+												data-aos-offset="100"
+												data-aos-delay="500"
+												data-aos-duration="1000"
+												data-aos-easing="ease-in-out"
+												data-aos-mirror="true"
+												data-aos-once="false"
+											>
+												Owner
+											</h6>
+											<div
+												className="item_author"
+												data-aos="fade-up"
+												data-aos-offset="100"
+												data-aos-delay="600"
+												data-aos-duration="1000"
+												data-aos-easing="ease-in-out"
+												data-aos-mirror="true"
+												data-aos-once="false"
+											>
 												<div className="author_list_pp">
 													{!loading ? (
 														<Link to={`/author/${userData?.ownerId}`}>
@@ -110,8 +161,27 @@ const ItemDetails = ({ nft }) => {
 									</div>
 									<div className="de_tab tab_simple">
 										<div className="de_tab_content">
-											<h6>Creator</h6>
-											<div className="item_author">
+											<h6
+												data-aos="fade-up"
+												data-aos-offset="100"
+												data-aos-delay="700"
+												data-aos-duration="1000"
+												data-aos-easing="ease-in-out"
+												data-aos-mirror="true"
+												data-aos-once="false"
+											>
+												Creator
+											</h6>
+											<div
+												className="item_author"
+												data-aos="fade-up"
+												data-aos-offset="100"
+												data-aos-delay="800"
+												data-aos-duration="1000"
+												data-aos-easing="ease-in-out"
+												data-aos-mirror="true"
+												data-aos-once="false"
+											>
 												<div className="author_list_pp">
 													{!loading && userData?.creatorImage ? (
 														<Link to={`/author/${userData?.creatorId}`}>
@@ -138,8 +208,27 @@ const ItemDetails = ({ nft }) => {
 											</div>
 										</div>
 										<div className="spacer-40"></div>
-										<h6>Price</h6>
-										<div className="nft-item-price">
+										<h6
+											data-aos="fade-up"
+											data-aos-offset="100"
+											data-aos-delay="1000"
+											data-aos-duration="1500"
+											data-aos-easing="ease-in-out"
+											data-aos-mirror="true"
+											data-aos-once="false"
+										>
+											Price
+										</h6>
+										<div
+											className="nft-item-price"
+											data-aos="fade-up"
+											data-aos-offset="100"
+											data-aos-delay="2500"
+											data-aos-duration="1000"
+											data-aos-easing="ease-in-out"
+											data-aos-mirror="true"
+											data-aos-once="false"
+										>
 											{!loading ? (
 												<>
 													<img src={EthImage} alt="" />
